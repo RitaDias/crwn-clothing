@@ -1,9 +1,14 @@
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-stretch: condensed;
   padding: 20px 60px;
 }
 
 a {
   text-decoration: none;
   color: #000000;
+}
+
+* {
+  box-sizing: border-box;
 }
