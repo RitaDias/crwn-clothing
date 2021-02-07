@@ -52,6 +52,8 @@ class App extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user))
+  // merges the method into the props to make it available in componenet
+  // says: there's an argument user -> where it will dispatch the setCurrentUser from the action folder
 });
 
 export default connect(null, mapDispatchToProps)(App);
