@@ -13,7 +13,7 @@ const CollectionPage = ({ collection }) => {
   return (
     <div className="collection">
       <h2> {title} </h2>
-      <div class="items">
+      <div className="items">
         {items.map((item) => (
           <CollectionItem key={item.id} item={item} />
         ))}
