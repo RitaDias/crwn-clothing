@@ -12,6 +12,7 @@ import {
 } from "../../firebase/firebase.utils";
 
 import { updateCollections } from "../../redux/shop/shop.actions";
+import { responsesAreSame } from "workbox-broadcast-update";
 
 const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
 const CollectionPageWithSpinner = WithSpinner(CollectionPage);
@@ -27,13 +28,29 @@ class ShopPage extends React.Component {
     const { updateCollections } = this.props;
     const collectionRef = firestore.collection("collections");
 
-    this.unsubscribeFromSnapshot = collectionRef.onSnapshot(
+    // promise
+    // since it's not an observable, it won't update immediately since it's not constantly listening
+    collectionRef.get().then((snapshot) => {
+      const collectionMap = convertCollectionsSnapshotToMap(snapshot);
+      updateCollections(collectionMap);
+      this.setState({ loading: false });
+    });
+
+    // fetch
+    /*fetch("https://firestore.googleapis.com/v1/projects/crwn-db-d4e16/databases/(default)/documents/collections")
+    .then(response = response.json())
+    .then(collections => {
+      // the fetch nestes it at least 8 levels in and so it's too complex for this use case
+    })*/
+
+    // snapshot
+    /*this.unsubscribeFromSnapshot = collectionRef.onSnapshot(
       async (snapshot) => {
         const collectionMap = convertCollectionsSnapshotToMap(snapshot);
         updateCollections(collectionMap);
         this.setState({ loading: false });
       }
-    );
+    )*/
   }
 
   render() {
