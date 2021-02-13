@@ -12,7 +12,6 @@ import {
 } from "../../firebase/firebase.utils";
 
 import { updateCollections } from "../../redux/shop/shop.actions";
-import { responsesAreSame } from "workbox-broadcast-update";
 
 const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
 const CollectionPageWithSpinner = WithSpinner(CollectionPage);
