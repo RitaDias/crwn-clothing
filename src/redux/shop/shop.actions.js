@@ -32,21 +32,5 @@ export const fetchCollectionsStartAsync = () => {
         dispatch(fetchCollectionsSuccess(collectionMap));
       })
       .catch((error) => dispatch(fetchCollectionsFailure(error.message)));
-
-    // fetch
-    /*fetch("https://firestore.googleapis.com/v1/projects/crwn-db-d4e16/databases/(default)/documents/collections")
-    .then(response = response.json())
-    .then(collections => {
-      // the fetch nestes it at least 8 levels in and so it's too complex for this use case
-    })*/
-
-    // snapshot
-    /*this.unsubscribeFromSnapshot = collectionRef.onSnapshot(
-      async (snapshot) => {
-        const collectionMap = convertCollectionsSnapshotToMap(snapshot);
-        updateCollections(collectionMap);
-        this.setState({ loading: false });
-      }
-    )*/
   };
 };

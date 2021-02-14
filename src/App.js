@@ -11,17 +11,12 @@ import Header from "./components/header/header.component";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
 import CheckoutPage from "./pages/checkout/checkout.component";
 
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
-
-import { setCurrentUser } from "./redux/user/user.actions";
 import { SelectCurrentUser } from "./redux/user/user.selectors";
 class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser } = this.props;
-
-    // open subscription: constant messaging between firebase and the app
+    /* // open subscription: constant messaging between firebase and the app
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -32,7 +27,7 @@ class App extends React.Component {
       } else {
         setCurrentUser(userAuth);
       }
-    });
+    });*/
   }
 
   componentWillUnmount() {
@@ -67,10 +62,4 @@ const mapStateToProps = createStructuredSelector({
   currentUser: SelectCurrentUser
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user))
-  // merges the method into the props to make it available in componenet
-  // says: there's an argument user -> where it will dispatch the setCurrentUser from the action folder
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
