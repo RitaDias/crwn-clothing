@@ -70,6 +70,16 @@ export const convertCollectionsSnapshotToMap = (collections) => {
   }, {});
 };
 
+// mimicking functionality that we may encounter when not using firebase as backend
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject);
+  });
+};
+
 firebase.initializeApp(config);
 
 export const auth = firebase.auth();
