@@ -58,6 +58,11 @@ export const MenuItemContainer = styled.div`
       margin-left: 7.5px;
     }
   }
+
+  @media screen and (max-width: 800px) {
+    // higher specificity order
+    height: 200px;
+  }
 `;
 
 export const SubTitleContainer = styled.span`
